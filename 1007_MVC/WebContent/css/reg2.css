@@ -1,0 +1,330 @@
+@charset "UTF-8";
+
+#contents_sub{ /*컨텐츠 전체부*/
+	
+	width: 900px; /*좌우 조금 띄워주기*/
+	height: auto; /*대충 맞추기*/
+	margin :auto;
+	
+	padding-top : 70px; /*위쪽을 벌려주자*/
+	
+	
+}
+
+/*서브 타이틀 여러번 쓰일거면 common에 넣어도됐지만 연습
+맨 위에 서브 타이틀 변경하자
+*/
+
+.sub_title {
+	background: url(../img/sub_title.png) no-repeat;
+	text-indent: -9999px;
+	/*이러면 살짝은 보이지만 높이가 낮아 다 안보인다.*/
+}
+
+
+h1.title01{ 
+		/*h1의 높이를 조정해서 이미지를 잡아주자
+		이미지 높이주기*/
+	
+		height: 30px;
+		/*이러면 다 보인다.*/
+}
+
+p.title_src{ /*p태그 중에 title _src는 추가 설명부를 의미*/
+	
+/* 	font : 15px bold;
+	color : #222; 잘 적용이안된다;*/
+ 	
+ 	font-size: 15px;
+	font-weight: bold;
+	color: #222;
+	 
+	 /*여백 주기*/
+	 padding : 10px 0 40px 5px;
+	 
+}
+
+.guide_txt{ /*기본 회원정보를 입력해주세요*/
+	/*간격을 조금 떨어뜨려주자*/
+	color : #999;
+	font-size: 11px;
+	padding-bottom: 7px;
+	
+}
+
+/*체크박스 들어가는 req*/
+
+.req{ /*필수 항목 체크박스가 다 들어간다. 간격은 이미있다. */
+	display: inline-block; /*크기를 부여하기위해 선언한 것*/
+	width : 11px;
+	height: 8px;
+	/*이미지 사이즈*/
+	text-indent: -9999px;
+	background: url("../img/bult.png") no-repeat;
+	
+	
+	
+}
+
+.fr{ /*해당 클래스는 오른쪽으로 보내자 == 체크 필수 입력사항 (span tag==문장단위 텍스트입력란)이다.*/
+	float : right !important;
+}
+
+/*********테이블 작업********/
+.table_type01{ /*테이블 전체*/
+	/*테이블 특유의 선 제거한다.*/
+	border-collapse: collapse;
+	border: 1px solid #ddd;
+	/*양옆에 선이 없다*/
+	border-left: none;
+	border-right: none;
+
+}
+.table_type01 th{ /*맨 앞 기재 항목 란*/
+	border: 1px solid #ddd;
+	background-color: #efefef;
+	
+	/*시연하면 다시 위 코드때문에 전체에서 삭제한 선이 보임 다시 지운다*/
+	border-left: none;
+	
+	font-weight: bold;
+	padding : 10px 0 10px 10px; /*이 패딩 때문에 테이블 자체가 커졌다. == 크기조정*/
+}
+
+.table_type01 td{ /*기재란*/
+	border: 1px solid #ddd; /*전체 선 생성*/
+	padding : 10px;
+	border-right: none; /*오른쪽 선만 지움*/
+}
+
+/*테이블 안에 있는 td안에 p태그 안에 btn 클래스들 적용
+ex. 중복확인, 아래의  btn .bdcheck는 p태그는 아니다 */
+
+/* .table_type01 td p .btn{
+	position: relative; 공간확보
+	top : -54px; 위로 당겨주자
+	
+} 밖이 absol안되있네 번거로우니까 그냥 버튼에 넣기만 하자
+
+
+히든만 지우자 */
+
+label.hidden{
+	display : block; /*크기조정*/
+	width : 0;
+	height: 0;
+	font-size: 0;/*글도 넣을 수 있으니까*/
+	line-height: 0; /*행높이*/
+	text-indent: -9999px;
+	/*display: none이 전부가 아니라 위처럼하는 게 정석이다*/
+}
+
+/*중복할인 버튼, 어제 login에서 진행했는데 .btn class의 내용 그대로이다.
+이거는 login reg2에도 쓰이니까 아래 부를 login2.css에서 짤라서 common에 넣자.
+*/
+
+/* .btn{ 버튼 들어가는 자리에는 항상 있다.
+btn class 전부에게 해당 이미지를 주고 텍스트를 삭제하자.
+	display: inline-block;
+	background: url(../img/btn.png) no-repeat;
+	text-indent: -9999px;
+	
+아직 크기 지정을 안해서 이미지는 안나온다
+
+	
+	
+}
+
+.btn a{
+	
+	display: block;
+	width: 100%;
+	height: 100%;
+	이미지가 btn에 있고 그에 맞게 100%로 지정하자 a 크기 변경 가능하게 하자
+	
+}
+
+ */
+ 
+
+ 
+ /********************
+ 버튼
+ **********************/
+  /*크기가 지정되지 않았으니 사라졌다 btn에 and 변수명으로 너비높이를 지정해주자*/
+.b_bdcheck{
+/* 	border : 1px solid black; */
+	width :59px;
+	height: 24px;	
+	/*위치를 땅겨 로그인이 아니라 중복확인란을 가져오자 */
+	background-position: 0 -150px; /*위치 대략 예측해서*/
+}
+
+
+	
+/*어제 했던거 가져오자*/
+
+/*.login .input_area p input{ 에 있던거 복사해서 가져오기
+	테이블 안에 tr td p 안에 있는 input들
+	
+	상부 부분은 p태그를 일부러 안줫기에 아래에서 안된다
+	tbody td p input를
+	tbody td input 로 바꾸자
+*/
+		
+
+	tbody td input[type = text], 
+	tbody td input[type = password]
+	{
+	
+	width: 110px;
+	border: 1px solid #ccc; /*비밀번호 창 테투리 연한 회색 출력*/
+	height : 14px;
+	/*껌뻑이지가 않는다. 이럴때는 패딩을 준다. 안쪽 여백*/
+	padding : 5px; /*충분한 공간이 생겨서 더 커진다. 안쪽 여백 덕에 더 커진다.*/
+	/*비번창이 깍인 효과*/
+	border-radius: 5px; /*모서리 깍기*/
+
+	line-height: 14px;
+	}
+	/*갑자기 체크박스랑 레디오 박스 넓어졌네
+	체크 박스도 레디오도 input box이기 때문이다.
+	ipnut type text만 적용하고 싶은데..
+	속성이 type = text만 적용하고 싶다
+	그래서 위를 설정 
+	tbody td input[type = text]{
+	그리고 패스워드도 설정 ,하고 같은 걸 다시 설정
+	select 도 적용하지말고 따로하자. 적용되는 패딩값이 다르다.
+	*/
+	
+	
+	
+	
+	select{ /*패딩 때문에 따로 잡아야하는 것으로 보인다*/
+	width: 200px;
+
+	padding : .7em .2em; /*여백으로 높이 설정 em은 배수를 의미한다.*/
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	
+
+	padding-top : 0px; /* 붙어서 나온다 안된다*/
+	
+	height : 25px;
+	line-height: 25px;
+	/*오른쪽 화살표의 이미지를 백그라운드로 이미지를 지정할 수 있다
+	하지만 그러려면 기존의 꺽쇠를 없에야한다.
+	*/
+/* 	
+	appearance : none; 아래화살표 없에기 */
+	
+	
+	}
+	
+
+	tbody td input.btn.postcheck{
+	width: 80px;
+	height : 25px;
+	background-position: -60px -150px;
+	
+	/*p태그가 아닌 input tag여서 손이 더 가는 것이다.*/
+	border: none; /*기본 보더가 있기에 삭제하자.*/
+	
+	/*버튼이니까 커서가 안나온다. 고로 커서를 넣어주자*/
+	cursor : pointer; /*손가락 모양으로 나온다.*/
+	}
+
+	/*이제 b_+bdcheck로 다시 위로 가서 버튼부로 가서 좌료를 당겨야한다. ㅇ*/
+	
+	/*그리고 지금 밑에 있었던 부분이 없어졌다.
+	아까 btn으로 설정했던 확인 취소 부 또한 크기 지정을 안했다.
+	*/
+
+
+	/*중앙 정렬하자*/
+	div.btn_center{
+	text-align: center;
+	/*텍스트 어라이너로 만들자*/
+	
+	/* padding-top: 30px; 
+	영역 구분이 없으니 마진이나 패딩이나 같다
+	*/
+	margin-top :30px;
+	
+	}
+
+	p.b_confirm{
+/* 	border : 1px solid black; */
+	
+	width: 63px;
+	height : 30px;
+	
+	background-position: 0px -110px;
+	
+	}
+	
+	p.b_cancel{
+	width: 63px;
+	height : 30px;
+	
+	background-position: -100px -110px;
+	
+	}
+	
+	
+	/*주소 입력란에 자동으로 들어가게 하는 프레이스 홀더가 있다 이거는 html에 
+	가서 주소입력란에 post code 오른편에 플레이스 홀더
+	<input type="text" id = "postcode" placeholder="우편번호"/> 
+	이렇게 하면 한자라도 입력하면 사라진다.
+	
+	중복확인도 
+	<a href = "javascript:chk()">중복확인</a><!-- 이부분에 이미지를 입히면된다 
+	이렇게 함수화를 해서 처리해준다. 원하는 함수로
+	
+	버튼은? 온클릭으로 바로 호출한다. 
+		<input type="button" value = "우편번호 찾기" class = "btn postcheck"
+		onclick = "chk2()">
+	
+	
+	아래에 바디 끝나기 전에 확인하게 alert("^^");추가한다.
+	
+	
+	<script>
+		function chk(){
+			console.log("아이디 검색 ㅋㅋㅋ"); <!--확인이 간편하다-->
+			<!--f12버튼을 누르고 console로 가면 함수가 호출된다 -->
+		}
+		function chk2(){
+			alert("^^");
+		}
+		
+	
+	
+	</script>
+	
+	*/
+	
+	
+	
+	
+	
+
+
+/*select에 padding top 넣어주고 싶은데 안들어간다.*/
+
+p.loginNot {
+	margin-bottom: 10px;
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+

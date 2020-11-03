@@ -1,0 +1,116 @@
+@charset "UTF-8";
+
+#contents_sub{ /*컨텐츠 전체부*/
+	
+	width: 900px; /*좌우 조금 띄워주기*/
+	height: auto; /*대충 맞추기*/
+	margin :auto;
+	
+	padding-top : 70px; /*위쪽을 벌려주자*/
+	
+
+}
+
+.sub_title {
+	background: url(../img/sub_title.png) no-repeat;
+	text-indent: -9999px;
+	/*이러면 살짝은 보이지만 높이가 낮아 다 안보인다.*/
+}
+
+
+/*서브 타이틀 부 이미지 출력 */
+h1.sub_title {
+	height: 30px;
+}
+
+/*밑의 부가 설명 다루기*/
+
+p.title_src{
+	font-size: 14px;
+	font-weight: bold;
+	color: #777;
+	font-style : Arial 굴림;
+	
+	padding : 20px 4px;
+	line-height: 20px;
+}
+
+
+div.agrBox{
+	/* border: 1px solid black; */
+	position: relative;
+	
+	width : auto;
+	/* margin-left: 100px; */
+}
+
+div.agrBox div p{
+/* 	text-align : center; */
+	
+	/* border: 1px solid red; */
+	
+	position: relative;
+	width : 900px;
+	
+}
+
+
+label.s_txt{
+	
+	font-size: 14px;
+	font-weight: bold;
+	color : black;
+
+	 
+
+}
+
+p.chkagr{ /*상부 크기가 지정되어있어서 그렇다 크기 넓히자.*/
+	/* border: 1px solid #ff5001; */
+	position: relative;
+	text-align: right;
+
+	
+	margin-bottom: 20px; 
+	
+	
+}
+
+div.btn_center {
+/* 	border : 1px solid green; */
+
+	margin-top: 20px;
+	text-align: center;
+	position: relative;
+
+	
+}
+
+p.btn.b_agr_confirm{
+/* 	border : 1px solid black; */
+	
+	background: url(../img/btn.png) no-repeat;
+	height : 30px;
+	width:   100px ;
+	
+	background-position: 0 -70px;	
+	
+
+}
+
+p.b_noagr_cancel.btn{
+/* 		border : 1px solid black; */
+	
+	background: url(../img/btn.png) no-repeat;
+	height : 30px;
+	width:   125px ;
+	
+	background-position: -100px -70px;	
+	margin-left: 5px;
+
+}
+
+	
+
+
+

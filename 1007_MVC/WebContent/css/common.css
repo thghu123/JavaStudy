@@ -1,0 +1,328 @@
+@charset "UTF-8";
+@import "reset.css";
+
+
+/********************************************
+기본 레이아웃 지정 
+********************************************/
+
+
+#wrap { 
+	
+	width : 100%;
+	height: 100%;
+	margin: auto;
+	
+	
+	
+	
+}
+
+
+/********상단영역********/
+#header {
+	position: relative;
+	/* 아무것도 안주면 왼쪽으로 붙는다 */	
+	width: 970px;
+	height: 109x;
+	margin : auto;
+	
+	
+}
+
+
+
+/****헤더 안에 있는 h1 태그에 문자열을 없에고, 배경이미지로 logo.png를 넣자*****/
+
+#header>h1{
+	
+	
+	
+	text-indent: -9999px;
+	
+	width:181px;
+	height: 59px;
+	
+	background: url("../img/logo.png") no-repeat;
+	
+	/*css가 중심이 아니다. 현 css문서는 html 안에 main.html에 적용될 것이다
+	이때 이미지의 경로는 main.html 문서를 중심으로 상대 경로를 지정한다	
+	../상위 폴더로 가라는 의미
+	*/
+
+}
+
+/***********메뉴 작업*********/
+
+/*
+	각 li의 너비는 194px로 정한다. 그리고 float 개념으로 수평 메뉴를 지정하자
+	배경색은 오렌지 계열 #e24c09, #ff5001
+	class가 gn의 위치는 절대적 위치로 지정하고 너비는 100%
+	높이는 50px로 지정한다.
+	
+	
+*/
+
+	/* #header .gn{  */
+	
+	#header>ul.gn{
+	
+	
+	position: absolute;
+
+	width: 100%;
+	height : 100%;
+	overflow : hidden;
+	
+	}
+	
+/* 	#header.gn li{
+	} */
+	#header>ul>li{
+	
+	float : left;
+	/* 썻으면 닫아주는 li class = end하나 추가해줘야한다. html에서 */
+	
+	width : 194px;
+	height : 50px;
+	
+	background: #ff5001;
+ 	text-align: center; 
+/* 	padding-top : 20px;  */
+	
+	}
+	
+	
+	/* 썻으면 닫아주는 li class = end하나 추가해줘야한다. html에서 */
+	#header .gn li.end{
+	clear : both;
+	width : 0;
+	height: 0;
+	
+	}
+	
+	 #header .gn li a{
+	 
+	 display:block;
+	height :100%;
+	weight : auto;
+	
+	line-height : 50px;
+	 text-align : center;
+	 
+	 }
+	 
+/* 	color: #fff;	 span에 직접가서 하자.*/
+/* 	border : 1px solid red;  */
+
+	 
+	 
+	 /*색은 실질적으로 바꾸기 위해서 span을 직접 들어가야 가능하다 글은 거기에 있으니*/
+	 
+/* 	#header>ul>li>a>span{
+	li tag 안에 a 태그만 있으니까 block 으로 그냥 바꿔도된다 
+	display:block;
+	height :100%;
+	weight : auto;
+	
+	
+	border : 1px solid red; 
+	
+	text-align : center;
+	line-height : 50px;
+	
+	
+	 
+	color: #fff;
+	font: 20px Arial;
+
+	}
+	 */
+	
+	#header .gn li a>span.menu{
+	display : inline-block;
+	color : white;
+/* 	width : 100%;
+	height: 100%;
+ */
+	font : 11px bold;
+/* 	text-align : center; 여기서는 안먹히고 li a 에서 먹히네 */
+	
+	background: url(../img/gnb_bult.png) no-repeat;
+	padding-left: 30px;
+	
+	}
+	
+	
+	#header>ul>li:hover{
+	background-color: #e24c09;
+	
+	}
+	#header .gn li a>span.m1{
+	background-position:  0 0;
+	}
+
+	#header .gn li a>span.m2{
+	background-position:  0 -22px;
+	}
+
+	#header .gn li a>span.m3{
+	background-position:  0 -44px;
+	}
+
+	#header .gn li a>span.m4{
+	background-position:  0 -66px;
+	}
+
+	#header .gn li a>span.m5{
+	background-position:  0 -88px;
+	}
+
+
+
+
+
+
+/********************
+	기타 스타일 
+**********************/
+
+.ellip{ /*class 2번째 명을 ellip으로 지정해 두었다.*/
+	/*문자열을 공간에 맞도록 표현 및 줄임표 출력 한다.*/
+	
+	display : inline-block;
+	width: 99%; /*100으로 잡으면 thum_img에 비해서 꽉차니까 조금 낮게*/
+	overflow: hidden;
+	text-overflow: ellipsis; 
+	/*여기까지 하면 97%기준으로 끊겨서 공백이있다.*/
+	white-space: nowrap; 
+	/*공백읇 보여주지 말아라는 의미 그 나머지 부분에 ...이 들어간다.*/
+	
+}
+
+.fclear{
+	
+	float : none;
+	clear : both;
+	display : block;
+	height : 0 !important; /*css를 적용하다보면 다른 css 파일에서 
+	중복적용되는 부분이 더러 생긴다. 그래서 우선시 하겠다는 의미입니다.*/
+	
+	/*여기서 중요한 것 너비는 줄지만 높이가 있다.
+	높이를 줄이면 수직상의 간극에서는 없는 것처럼 보인다.
+	높이가 안먹히는 경우는 따른 css 가 적용이 될 때이다.
+	이걸 우선적으로 적용하기위해 !important를 지정한다
+	
+	*/
+	
+}
+/* .fr{
+	float : right !important;
+	우선 순위로 밀린 경우 위 같은 명령어를 넣어보면 확인할 수 있다.
+}
+ */
+
+
+
+/********************
+	바닥글 footer 스타일 
+**********************/
+
+#footer {
+	width: auto;
+	background: #eee;
+	margin-top : 100px;
+}
+/*footer안에 글씨 영역만 위의 970만큼 동일하게 맞추자*/
+
+#footer .footer_area{
+	width: 900px; /*970보다 안으로 들어가도록*/
+	margin :  auto; /*가운제 맞춤을 의미한다.*/
+	padding : 50px 0; /*아래 guide에 copyright에 각각 넣는 것보다 footer area에 패딩 넣는게 간결하다. */
+}
+#footer .foot_guide{
+	padding-bottom: 20px;
+	overflow: hidden;
+	 /*위 간격 띄우기*/
+/* 	padding-top : 20px; */
+}
+
+#footer .foot_guide li{
+	float : left;
+	padding : 0 10px; /*좌우만 띄우기*/
+	/*보면 중간에 선이 존재한다. 고로 left 선을 다 만들고 맨 왼쪽 first child 삭제*/
+	border-left: 1px solid #999;
+	
+
+}
+
+	#footer .foot_guide li:first-child{
+	border-left: none;
+	padding-left: 0;
+	
+	
+	} /*맨 왼쪽만 제거하고 패딩만큼 제거*/
+	
+
+	#footer .foot_guide li a{
+	color : #777;
+	font-size: 12px;
+	font-weight: bold
+	
+	}
+	#footer .foot_guide li a:hover{
+	color : #ff5001;
+	
+	}
+	
+	#footer address {
+	font : 12px #777;
+	padding-bottom: 6px;
+	
+	}
+	
+	#footer .copyright{ 
+	font-size : 11px;
+	/* padding-bottom: 10px; */
+	}
+
+/********************
+	버튼 스타일 
+**********************/
+
+.btn{ /*버튼 들어가는 자리에는 항상 있다.*/
+/*btn class 전부에게 해당 이미지를 주고 텍스트를 삭제하자.*/
+	display: inline-block;
+	background: url(../img/btn.png) no-repeat;
+	text-indent: -9999px;
+	
+/*아직 크기 지정을 안해서 이미지는 안나온다*/
+
+	
+	
+}
+
+.btn a{
+	
+	display: block;
+	width: 100%;
+	height: 100%;
+	/*이미지가 btn에 있고 그에 맞게 100%로 지정하자 a 크기 변경 가능하게 하자*/
+	
+}
+
+
+/*******************************
+텍스트 정렬 스타일
+*******************************/
+.txt_right{ 
+	
+	text-align: right; 
+	
+	}
+
+
+
+
+
+

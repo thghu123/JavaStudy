@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lib">
+
+<!-- 아이디 검사 -->
+
+<select id = "search" resultType="mybatis.vo.LibJoinVO">
+	
+	select * from h_libmem natural join h_libbook
+	
+</select>
+<!-- 이제 dao에서 불러주자 -->
+<!-- 
+<select id = "all" resultType="mybatis.vo.MemberVO" parameterType="String">
+	select * from member_t 
+</select>
+
+
+<select id = "check_m" resultType="mybatis.vo.MemberVO" parameterType="java.util.HashMap">
+	select * from member_t where m_id = #{id} and m_pw = #{pw}
+</select>
+
+ -->
+</mapper>
+
+
+
+
+
