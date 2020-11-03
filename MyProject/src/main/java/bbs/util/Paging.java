@@ -73,7 +73,7 @@ public class Paging {
 		sb = new StringBuffer("<ol class='paging'>");
 		
 		if(isPrePage) {
-			sb.append("<li><a href='Controller?cPage=");
+			sb.append("<li><a href='bbs?cPage=");
 			sb.append(startPage-blockPage);
 			sb.append("'> &lt; </a></li>");
 		}else {
@@ -89,7 +89,7 @@ public class Paging {
 				sb.append(i);
 				sb.append("</li>");
 			} else {
-				sb.append("<li><a href='Controller?cPage=");
+				sb.append("<li><a href='bbs?cPage=");
 				sb.append(i);
 				sb.append("'>");
 				sb.append(i);
@@ -99,7 +99,7 @@ public class Paging {
 		
 		//다음기능 가능여부 확인
 		if(isNextPage) {
-			sb.append("<li><a href='Controller?cPage=");
+			sb.append("<li><a href='bbs?cPage=");
 			sb.append(startPage+blockPage);
 			sb.append("'> &gt; </a></li>");
 		}else {

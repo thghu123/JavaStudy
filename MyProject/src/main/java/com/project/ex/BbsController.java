@@ -37,7 +37,7 @@ public class BbsController {
 		Paging page = new Paging(c_page, rowTotal, blockList, blockPage);
 		
 		// 목록을 얻어낸다.
-		BbsVO[] ar = b_dao.getList(1, 10, bname);
+		BbsVO[] ar = b_dao.getList(page.getBegin(), page.getEnd(), bname);
 		
 		mv.addObject("ar", ar);
 		mv.addObject("rowTotal", rowTotal);

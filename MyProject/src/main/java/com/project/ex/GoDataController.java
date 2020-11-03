@@ -8,6 +8,7 @@ import java.util.List;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,6 +18,8 @@ import kr.go.vo.DataVO;
 	@Controller
 	public class GoDataController {
 	
+		private DataVO[] ar;
+		
 		@RequestMapping("/goData")
 		public ModelAndView data() throws Exception {
 			//rest API 서버의 URL을 객체로 만들어둔다.
@@ -53,7 +56,7 @@ import kr.go.vo.DataVO;
 			
 			
 			//List<DataVO> d_list = null; 배열로 먼저 만들어보자
-			DataVO[] ar = new DataVO[e_list.size()];
+			ar = new DataVO[e_list.size()]; //지역변수를 멤버변수로 수정
 			for(Element e : e_list) {
 				int i = 0;
 				String addr1 = e.getChildText("addr1");
@@ -79,10 +82,25 @@ import kr.go.vo.DataVO;
 			
 			ModelAndView mv = new ModelAndView();
 			mv.addObject("list", ar);
-			mv.setViewName("goData"); //jsp 만든 뒤 ar의 내용을 표현하자.
+			mv.setViewName("tour/goData"); //jsp 만든 뒤 ar의 내용을 표현하자.
 			//1102_MXL과 도입부만 다르고 다 같다.
 			
 			
 			return mv;
 		}
+		
+		@RequestMapping("viewData")
+		public ModelAndView viewData(int idx) {
+			//배열을 접근하기 위한 인덱스 값 idx
+			ModelAndView mv = new ModelAndView();
+			//System.out.println(idx);//잘 넘어온다.
+			
+			mv.addObject("vo",ar[idx]);
+			mv.setViewName("tour/viewData");
+			
+			return mv;
+		}
+		
+		
+		
 	}

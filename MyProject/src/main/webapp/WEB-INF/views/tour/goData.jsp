@@ -9,12 +9,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link type="text/css" rel="stylesheet" 
+href="css/goData.css"/>
+<link type="text/css" rel="stylesheet" 
 href="css/common.css"/>
 <link type="text/css" rel="stylesheet" 
 href="css/login.css"/>
 
-<link type="text/css" rel="stylesheet" 
-href="css/bbs.css"/>
 
 
 </head>
@@ -40,42 +40,33 @@ href="css/bbs.css"/>
 				<caption>게시판 목록</caption>
 				<thead>
 					<tr class="title">
-						<th class="no">번호</th>
+						<th class="no">이미지</th>
 						<th class="subject">제목</th>
-						<th class="writer">글쓴이</th>
+						<th class="writer">위치</th>
 						<th class="reg">날짜</th>
-						<th class="hit">조회수</th>
+						<th class="hit">전화번호</th>
 					</tr>
 				</thead>
 				
-				<tfoot>
-	                      <tr>
-	                          <td colspan="4">
-	                              ${p_code }
-	                          </td>
-							  <td>
-								<input type="button" value="글쓰기" id="write_btn"/>
-							  </td>
-	                      </tr>
-	                  </tfoot>
 				<tbody>
-				<c:if test="${ar ne null }">
-					<c:forEach var="vo" items="${requestScope.ar }" varStatus="st">
+				<c:if test="${list ne null }">
+				<!-- 위 목록에 맞게 하나씩 넣어주자 -->
+					<c:forEach var="vo" items="${requestScope.list }" varStatus="st">
 					<tr>
-						<td>${rowTotal - st.index -((nowPage-1)*10)}</td>
+						<td><img src = "${vo.firstimage}" width = "80px"/></td>
 						<td style="text-align: left">
-							<a href="view?cPage=${nowPage }&b_idx=${vo.b_idx}">${vo.subject }</a></td>
-						<td>${vo.writer }</td>
+							<a href="viewData?idx=${st.index }">${vo.title }</a></td>
+							<%-- <a href="view?cPage=${nowPage }&b_idx=${vo.b_idx}">${vo.title }</a></td>--> --%>
+						<td>${vo.addr2 }</td>
 						<td>
-						<c:if test="${vo.write_date ne null }">
-							${fn:substring(vo.write_date, 0, 10) }
-						</c:if>
+							${fn:substring(vo.eventstartdate,0,10) }
+
 						</td>
-						<td>${vo.hit }</td>
+						<td>${vo.tel }</td>
 					</tr>
 					</c:forEach>
 				</c:if>
-				<c:if test="${ar eq null }">
+				<c:if test="${list eq null }">
 					<tr>
 						<td colspan="5" class="empty">
 							등록된 게시물이 없습니다.
