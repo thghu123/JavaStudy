@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+	<h1>이름 검색</h1>
+	<article>
+	
+	<form action = "SearchName" method = "post">
+		<label for = "s_name">검색명: </label>
+		<input id = "s_name" name = "s_name"/><br/>
+	
+		<input type = "button" value = "보내기" onclick = "exe()"/>
+		<!-- 위버튼은 클릭할 때마다 사용자가 입력한 이름이 있는 지 판단한 후 서버로 사용자가 입력한 이름을 보내야한다.
+		이 모든 것을 자바 스크립트 함수인 exe()에서 처리하도록 한다 -->
+		
+		
+	</form>
+	
+	</article>
+	
+	<script>
+		function exe(){
+			//사용자가 검색할 이름을 입력하는 곳 , 현재 문서의 아이디가 s_name이라는 곳
+			var s_name = document.getElementById("s_name");
+			if(s_name.value != "" && s_name.value.trim().length > 0 ){
+				document.forms[0].submit();
+			}
+			else{
+				alert("검색할 이름을 입력하세요!");
+				
+				s_name.focus();
+			}
+		
+			
+			
+			
+			
+			
+		}
+		
+	
+	</script>
+	
+</body>
+</html>

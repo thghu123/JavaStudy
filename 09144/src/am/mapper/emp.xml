@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="emp">
+  <select id="total" resultType="am.vo.EmpVO">
+    select * from emp
+  </select>
+
+<!-- resultType : 결과를 반환할 객체
+	 parameterType : 인자의 자료형
+	 인자는 조건의 값으로 쓰인다.
+ -->
+
+  <select id="search_name" resultType="am.vo.EmpVO" parameterType = "String" > <!-- 조건문의 인자를 받자 많이 쓰이는 것이 String -->
+    <!--  select * from emp WHERE ename = #{value}  -->
+     select * from emp where ename like '%'||#{s_name}||'%' 
+    <!-- 중간이름만 넣어도 되도록한다 %이 글자 무언가 반환이 여러개니까 List로 받자. 받는 건 selectList  -->
+    
+  </select>
+</mapper>

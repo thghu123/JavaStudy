@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+body {	
+		margin : 0;
+		padding : 0;
+	}
+
+	header {
+		height : 4spx;
+		margin : 0;
+		background-color: #2e2e2e;
+	
+
+
+ }
+ 	ul#menu {
+ 		margin : 0;
+ 		padding : 0;
+ 		list-style : none;
+ 		margin-left : 50px;
+ 
+ 
+ 
+ 
+ 
+ 	}
+ 
+ 	ul#menu>li {
+ 
+ 		display : inline-block;
+ 		margin-right : 40px;
+ 		margin-left : 40px;
+ 		font-family: Arial;
+ 		font-size : 14px;
+ 
+ 	}
+ 
+	 ul#menu>li>a{
+ 
+	 	color : #aaaaaa;
+	 	text-decoration: none;
+	 	line-height:  44px;
+	 	 text-align : center; 
+	 	 
+ 		width:30px;
+ 		height:45px;
+ 
+	 }
+ 
+ 	 ul#menu>li>a:hover{
+ 
+	 	color : #fff;
+
+ 	}
+
+ 
+	
+	
+	li#apple{
+	  /* text-indent: -9999px;  */ 
+	}
+	
+ 	li#apple>a{
+ 	
+ 	background-image: url(images/apple.svg);
+ 	position: absolute;
+ 	background-repeat: no-repeat;
+ 	top: 0;
+	background-size: 30px 40px;
+	/*앞이 너비 옆이 높이*/
+ 	width : 44;
+ 	
+ 	background-position: center center;
+	 margin-left : -24px; 
+	}	

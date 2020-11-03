@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="emp">
+  <select id="all" resultType="am.vo.EmpVO">
+    select * from emp
+  </select>
+  
+  
+  <select id = "searchNo" resultType="am.vo.EmpVO" parameterType="Int">
+  
+  	select * from emp where empno like #{n}
+  
+  </select>
+  
+  <!-- 3개의 sql문장을 하나로 통합하겠다.  
+  동적쿼리-->
+  
+  <select id="search" resultType="am.vo.EmpVO" parameterType="java.util.Map">
+  <!-- 다형성이 중요한 개념 , 하나의 map 가족 == instance 부모부터 자식까지 생긴다.
+  hashmap 바로 위에가 map이다. map으로 부터 상속받은 애들은 다형성으로 parameterType으로 들어올 수 있어
+  hash table도 map을 상속받았으니 사용이 가능하다.
+  파라미터 타입에서 서치 타입, 발류 두개의 변수를 가지고 있으면 수행하겠다.
+  if안 test에는 조건문을 적으라는 의미
+  -->
+  	select * from emp 
+  	<if test="searchType != null and searchValue != null">
+  	<!-- 여기는 파라미터 타입으로 넘어온 map 구조에 searchType이라는 변수와
+  	search Value라는 변수가 둘다 있을 경우에만 수행합니다.
+  	 -->
+  	 <trim prefix="where"> <!-- 위 if를 통과하면 where가 들어간다. 
+  	 자동완성을 시키면 overwrite도 있는 데 대체 및 지울 때 쓴다.prefix는 쓴다는 의미-->
+  	 	<choose> <!-- choose안에는 when이라는 애와 otherwise 기타 --> 
+  	 		<when test="searchType == 0"><!-- 서치 타입이 0과 같다면? 사번검색 -->
+  	 		 empno = #{searchValue}
+  	 		</when>
+  	 		
+  	 		<when test = "searchType == 1">
+  	 		 LOWER(ename) like LOWER('%'||#{searchValue}||'%')
+  	 		</when> <!-- 다 소문자로 바꿔서 어떤 문자로도 검색가능하도록한다. -->
+  	 		
+  	 		<when test = "searchType == 2">
+  	 		 LOWER(job) like LOWER('%'||#{searchValue}||'%')
+  	 		</when> <!-- 다 소문자로 바꿔서 어떤 문자로도 검색가능하도록한다. -->
+  	 		
+  	 		
+  	 		
+  	 	</choose>
+  	 	
+  	 </trim>
+  	
+  	</if>
+  	
+	  
+
+  </select>
+
+  
+  <update id = "edit" parameterType="java.util.Map"> <!-- 수정값이니까 리설트는 없고 파라미터 타입만 주면 된다, 반환없고 변경만 -->
+  update emp 
+  <trim prefix = "set" suffixOverrides=","> <!-- 마지막 컴마 자동으로 삭제 기능 -->
+  	<if test = "sename!=null and !sename.equals('')"><!-- !=null을 먼저 체크해줘야 에러가 안난다. null값이 로직에 들어가면 오류난다. -->
+  		<!-- https://showbang.github.io/typistShow/2017/04/11/nullCheck/ -->
+  		ename = #{sename},
+  	</if>
+  	<if test = "sjob!=null and !sjob.equals('')">
+  		job = #{sjob},
+  	</if>
+  	
+  	<if test = "ssal!=null and !ssal.equals('')"> 
+  		sal = #{ssal},
+  	</if>
+  
+  </trim>
+ 	where empno = #{sempno}
+ 	<!-- 실제 수정이 되게 끔 -->
+  </update>
+  
+  <!-- 사원추가 , map(권장)을 써도 되지만 EmpVO 도 가능하다.-->
+  <insert id = "add" parameterType="am.vo.EmpVO"> 
+  insert into emp(empno,ename,job,sal) 
+  VALUES(#{empno},#{ename},#{job},#{sal})
+  
+  
+  
+  <!-- 파라미터가 1개이면 #{}에 뭘써도 되지만 그렇지 않으면 호환이 되게 써야한다 
+  empvo에 있는 멤버변수를 써줘야한다. Mabatis 변수명으로 적어줘야한다.
+  VO객체를 만들때 애초에 서버의 이름과 동일하게 만든다.
+  -->
+  
+  </insert>
+  
+  
+  
+  
+</mapper>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+
+<!-- 목록을 만들기 위한 select -->
+<!-- <select id = "total" resultType="mybatis.vo.MemoVO">
+	select * from memo_t order by idx desc 
+	최근 글이 가장 위로 올라가야하니까 정렬해야한다.
+
+</select> -->
+<!-- 저장을 위한 insert -->
+
+<insert id = "add" parameterType="java.util.Map">
+
+	insert into member_t(m_id,m_pw,m_name,m_addr,m_phone,m_email) values(#{m_id},#{m_pw},#{m_name},#{m_addr},#{m_phone},#{m_email})
+	
+</insert>
+
+
+<!-- 로그인 시 필요한 select -->
+	<select id = "login" resultType = "mybatis.vo.MemberVO" parameterType="java.util.Map">
+	<!-- 만약 VO안에 pw가 있었으면 MemberVO를 쓸 수 있었지만 아니기에 map구조로 진행 -->
+	
+	select * from member_t where m_id = #{u_id} and m_pw = #{u_pw}
+	<!-- 로그인 검증은 절대 like 쓰면 안된다  -->
+	<!-- 나가는 값이 하나니까 넘어가는 값이 없으면 null 여러개가 넘어가면 빈 리스트가 넘어간다 -->
+	
+	
+	</select>
+	<!-- vo객체로 반환해서 로그인 되느냐 안되느냐를 검증한다 -->
+	
+<!-- 보기를 위한 select -->
+<!-- 
+<select id = "view" parameterType="String" resultType="mybatis.vo.MemoVO">
+
+	select * from memo_t where idx = #{idx}
+
+</select>
+
+응용
+
+검색을 위한 select (동적쿼리)
+	<select id = "searchM" parameterType="java.util.Map" resultType="mybatis.vo.MemoVO">
+	select * from memo_t
+	<if test = "searchType != null and searchValue!= null">
+		<trim prefix="where">
+			<choose>
+				<when test = "searchType == 0">
+				writer like '%'||#{searchValue}||'%'
+				</when>
+				
+				<when test = "searchType == 1">
+				content like '%'||#{searchValue}||'%'
+				</when>
+				
+				<when test = "searchType == 2">
+				reg_date like '%'||#{searchValue}||'%'
+				</when>
+				
+			</choose>
+		
+		
+		</trim>
+		
+	</if> 
+	</select>
+
+
+
+수정을 위한 업데이트
+<update id = "edit" parameterType="java.util.Map"> 수정값이니까 리설트는 없고 파라미터 타입만 주면 된다, 반환없고 변경만
+  update memo_t 
+  <trim prefix = "set" suffixOverrides=","> 마지막 컴마 자동으로 삭제 기능
+  	reg_date = sysdate,
+  	<if test = "writer!=null and !writer.equals('')">!=null을 먼저 체크해줘야 에러가 안난다. null값이 로직에 들어가면 오류난다.
+  		https://showbang.github.io/typistShow/2017/04/11/nullCheck/
+  		writer = #{writer},
+  	</if>
+  	<if test = "content!=null and !content.equals('')">
+  		content = #{content},
+  	</if>
+  </trim>
+ 	where idx = #{idx}
+ 	실제 수정이 되게 끔
+  </update>
+  
+  
+  <delete id = "del" parameterType="String">
+
+ 	delete from memo_t where idx = #{idx} 
+  
+  
+  </delete>
+ -->
+</mapper>
+
+
+
+
+
+
