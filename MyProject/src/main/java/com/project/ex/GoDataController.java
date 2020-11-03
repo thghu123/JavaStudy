@@ -52,21 +52,37 @@ import kr.go.vo.DataVO;
 			//DAtaVO[] 로 바꿔야 jsp에서 표현할 수 있다. element는 표현 못한다.
 			
 			
-			List<DataVO> d_list = null;
-			DataVO[] d_array = null;
+			//List<DataVO> d_list = null; 배열로 먼저 만들어보자
+			DataVO[] ar = new DataVO[e_list.size()];
 			for(Element e : e_list) {
+				int i = 0;
+				String addr1 = e.getChildText("addr1");
+				String addr2 = e.getChildText("addr2");
+				String eventenddate = e.getChildText("eventenddate");
+				String eventstartdate = e.getChildText("eventstartdate");
+				String firstimage = e.getChildText("firstimage");
+				String firstimage2 = e.getChildText("firstimage2");
+				String mapx = e.getChildText("mapx");
+				String mapy = e.getChildText("mapy");
+				String tel = e.getChildText("tel");
+				String title = e.getChildText("title");
 				
+				//세터 다 부르는 게 많기에 생성자를 datavo에 2개 만들어보낸다. generator이용
+				//창 우클릭 - source - get constuct field를 누르고 전체 select해서 추가하면된다
+				//기본생성자도 추가해줄 것
+				DataVO vo = new DataVO(addr1, addr2, eventenddate, eventstartdate, firstimage, firstimage2, mapx, mapy, tel, title);
+				
+				ar[i++] = vo;
+				
+				
+			}//for의 끝
 			
-				DataVO vo = null;
-				//vo.setMapx(e.getAttribute("mapx"));	
-				
-				
-				
-				
-			}
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("list", ar);
+			mv.setViewName("goData"); //jsp 만든 뒤 ar의 내용을 표현하자.
+			//1102_MXL과 도입부만 다르고 다 같다.
 			
 			
-			
-			return null;
+			return mv;
 		}
 	}

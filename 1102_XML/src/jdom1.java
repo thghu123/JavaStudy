@@ -6,7 +6,7 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
-public class jdom1 {
+public class jdom1{
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub

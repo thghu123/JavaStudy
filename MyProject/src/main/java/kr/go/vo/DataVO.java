@@ -12,6 +12,25 @@ public class DataVO {
 	tel,
 	title;
 
+	public DataVO() {}
+	
+	
+	public DataVO(String addr1, String addr2, String eventenddate, String eventstartdate, String firstimage,
+			String firstimage2, String mapx, String mapy, String tel, String title) {
+		super();
+		this.addr1 = addr1;
+		this.addr2 = addr2;
+		this.eventenddate = eventenddate;
+		this.eventstartdate = eventstartdate;
+		this.firstimage = firstimage;
+		this.firstimage2 = firstimage2;
+		this.mapx = mapx;
+		this.mapy = mapy;
+		this.tel = tel;
+		this.title = title;
+	}
+
+
 	public String getAddr1() {
 		return addr1;
 	}
