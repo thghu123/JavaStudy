@@ -23,7 +23,7 @@ import kr.go.vo.DataVO;
 		@RequestMapping("/goData")
 		public ModelAndView data() throws Exception {
 			//rest API 서버의 URL을 객체로 만들어둔다.
-			String url_src="http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?serviceKey=edh68oHntQrWlGu%2B77Bdml97TV9kDdgI07WJt48vzsiU%2FZJxHr3miYl3JLu5jZMidnuQeOoR3pq%2FR13wTO%2F2vQ%3D%3D&MobileOS=ETC&MobileApp=AppTest&arrange=A&listYN=Y&eventStartDate=20201022";
+			String url_src="http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?serviceKey=edh68oHntQrWlGu%2B77Bdml97TV9kDdgI07WJt48vzsiU%2FZJxHr3miYl3JLu5jZMidnuQeOoR3pq%2FR13wTO%2F2vQ%3D%3D&MobileOS=ETC&MobileApp=AppTest&arrange=A&listYN=Y&eventStartDate=20191111";
 			URL url = new URL(url_src);
 					//url 생성시 경로를 넣을 수 있는 데 경과를 넣는다.
 					//자바입장에서는 오류가 날 가능성이있기에 예외 처리를 진행한다.
@@ -57,8 +57,9 @@ import kr.go.vo.DataVO;
 			
 			//List<DataVO> d_list = null; 배열로 먼저 만들어보자
 			ar = new DataVO[e_list.size()]; //지역변수를 멤버변수로 수정
+			int i = 0;
 			for(Element e : e_list) {
-				int i = 0;
+			
 				String addr1 = e.getChildText("addr1");
 				String addr2 = e.getChildText("addr2");
 				String eventenddate = e.getChildText("eventenddate");

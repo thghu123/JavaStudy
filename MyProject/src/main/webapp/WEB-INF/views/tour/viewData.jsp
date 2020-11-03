@@ -8,8 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link type="text/css" rel="stylesheet" 
-href="css/goData.css"/> 
+<!-- <link type="text/css" rel="stylesheet" 
+href="css/goData.css"/>  -->
 <link type="text/css" rel="stylesheet" 
 href="css/common.css"/>
 <link type="text/css" rel="stylesheet" 
@@ -51,6 +51,12 @@ href="css/login.css"/>
 					<tr><td>연락처: ${vo.tel }</td></tr>
 					<tr><td>주소1: ${vo.addr1 }</td></tr>
 					<tr><td>주소2: ${vo.addr2 }</td></tr>				
+					<tr>
+						<td>
+							<div id="map" style="width:800px;height:400px;"></div>
+							
+						</td>
+					</tr>				
 					
 				</tbody>
 			</table>
@@ -80,9 +86,53 @@ href="css/login.css"/>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=365d7701f7740996ffbc53aff17bebd5"></script>
+
+
 <script>
 
 	$(function(){
+		//================kakaomap======================
+			//어디를 들어가도 본사 주소가 나온다. 아래의 위도 경도부를 수정할 수 있다.
+			//문서를 보면 mapx가 경도 mapy 위도 
+		var container = document.getElementById('map');
+		var options = {
+			center: new kakao.maps.LatLng(${vo.mapy}, ${vo.mapx}),
+			level: 3
+		};
+
+		var map = new kakao.maps.Map(container, options);
+		
+		// 마커가 표시될 위치입니다 
+		var markerPosition  = new kakao.maps.LatLng(${vo.mapy}, ${vo.mapx}); 
+
+		// 마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+		    position: markerPosition
+		});
+
+		// 마커가 지도 위에 표시되도록 설정합니다
+		marker.setMap(map);
+		
+
+		var iwContent = '<div style="padding:5px;">${vo.title} <br><a href="https://map.kakao.com/link/map/${vo.title},33.450701,126.570667" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/${vo.title},33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+		    iwPosition = new kakao.maps.LatLng(${vo.mapy}, ${vo.mapx}); //인포윈도우 표시 위치입니다
+
+		// 인포윈도우를 생성합니다
+		var infowindow = new kakao.maps.InfoWindow({
+		    position : iwPosition, 
+		    content : iwContent 
+		});
+		  
+		// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+		infowindow.open(map, marker); 
+		
+		
+		
+		
+		//===============================================
+		
+		
 		
 		$("#write_btn").bind("click", function(){
 			console.log("DGDGDGDGDG");
