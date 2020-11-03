@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!ELEMENT members (person*)>
+	<!ELEMENT person (name,phone)>
+	<!ELEMENT name (#PCDATA)>
+	<!ELEMENT phone (#PCDATA)>
+	
+	<!ATTLIST person no CDATA #FIXED "A10">
+	<!ATTLIST phone service CDATA #REQUIRED> 

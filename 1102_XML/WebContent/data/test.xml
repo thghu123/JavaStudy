@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE members SYSTEM "ex1.dtd">
+
+<members>
+	<person no = "A10">
+		<name>홍길</name>
+		<phone service = "SKT">1</phone>
+	</person>
+</members>

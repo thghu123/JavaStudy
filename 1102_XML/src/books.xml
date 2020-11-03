@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <book isbn="100">
+    <title>너의 흔적</title>
+    <price>12000</price>
+  </book>
+  <book isbn="100">
+    <title>함정</title>
+    <price>9000</price>
+  </book>
+  <book>
+    <title>자바바이블</title>
+    <price>29000</price>
+  </book>
+</root>
