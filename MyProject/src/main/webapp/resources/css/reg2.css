@@ -1,0 +1,124 @@
+@charset "UTF-8";
+
+#contents_sub{
+	width: 900px;
+	height: auto;
+	margin: auto;
+	padding-top: 30px;
+}
+
+.sub_title{
+	background: url(../img/sub_title.png) no-repeat;
+	text-indent: -9999px;
+}
+h1.title01{
+	height: 30px;
+}
+p.title_src{
+	font-size: 15px;
+	font-weight: bold;
+	color: #222;
+	padding: 10px 0 40px 5px;
+}
+.guide_txt{
+	color: #999;
+	font-size: 11px;
+	padding-bottom: 7px;
+}
+.req{
+	display: inline-block;
+	width: 12px;
+	height: 8px;
+	text-indent: -9999px;
+	background: url(../img/bult.png) no-repeat;
+}
+.fr{ float: right !important; }
+
+/*****  테이블 작업  *****/
+.table_type01{
+	border-collapse: collapse;
+	border: 1px solid #ddd;
+	border-left: none;
+	border-right: none;
+}
+.table_type01 th{
+	border:1px solid #ddd;
+	border-left: none;
+	background-color: #efefef;
+	font-weight: bold;
+	padding: 10px 0 10px 10px;
+}
+.table_type01 td{
+	border:1px solid #ddd;
+	padding: 10px;
+	border-right: none;
+}
+
+label.hidden{
+	display: block;
+	width: 0;
+	height: 0;
+	font-size: 0;
+	line-height: 0;
+	text-indent: -9999px;
+}
+
+/** 버튼 **/
+.b_bdcheck{
+	width: 60px;
+	height: 25px;
+	background-position: 0 -150px;
+	
+}
+
+tbody td input[type=text], 
+tbody td input[type=password]{
+	width: 110px;
+	border: 1px solid #ccc;
+	height: 14px;
+	padding: 5px;
+	border-radius: 3px; /* 모서리 깎기 */
+}
+select {
+    width: 120px; /* 원하는 너비설정 */
+    padding: .5em .2em; /* 여백으로 높이 설정 */
+    border: 1px solid #ccc;
+    border-radius: 3px; 
+    color: #999;
+	font-size: 11px;
+    /*appearance: none;*/ /* 아래화살표 없애기 */
+}
+p.email_box{
+	padding-top: 0;
+}
+select option{
+	color: #999;
+	font-size: 11px;
+}
+.postcheck{
+	width: 78px;
+	height: 25px;
+	background-position: -60px -150px;
+	border: none;
+	cursor: pointer;
+}
+.btn_center{
+	text-align: center;
+	padding-top: 30px; 
+}
+.b_confirm{
+	width: 63px;
+	height: 30px;
+	background-position: 0px -110px;
+}
+.b_cancel{
+	width: 63px;
+	height: 30px;
+	background-position: -100px -110px;
+}
+
+
+
+
+
+
