@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bbs">
+
+
+<resultMap type = "mybatis.vo.BbsVO" id = "map1">
+
+<!-- 결과를 map1로 만들어라 == 세개중에 첫번째 1개만 던져준다 (1,2,3레코드있어도) 
+list에서 여기로 딱오면 b_idx = 1이니까 여기서 commlist를 호출해주는 것이다. commlist는 리스트를 준다
+일단 bbsVO 하나 생성 , 그리고 돌아오면 다시 2번째가 전달이 된다.
+
+총 3개의 결과가 나왔으므로 이의 결과를 list로 보낸다. 여러개이므로 무조건 mybatis니까 리스트로 넘겨준다
+기본키는 b_idx
+
+id와 result모두 기본키 선언할 수 있으나, id는 절대 중복이 안돼요를 선언 result는 중복일지 아닐지모르는데
+빠진게 있을 지 모르는 데 결과값은 어디에 담을 거에요. 담는 건 같은데 id는 기본키를 일러주고 처리를 하는 것, result는 단순 저장
+
+list문에서 결과가 생긴 column의 컬럼명이 colum에 들어간다. 
+property는 속성 == 멤버변수/ list결과의 각각의 레코드들의 결과를 map1으로 만들어주세요 
+여기로 오니까 bbsvo로 만들어달래 -> property 멤버변수의 값을 넣어주겠다. 지금 넘어온 레코드의
+b_idx라는 컬럼의 값을 해당 멤버 변수에 넣어라. 실제 VO의 b_idx에 넣어야하므로 property에 이를 넣어준다
+
+columm은 서버 레코드에서 쓰니까 받아온 결과값을 bbsVO의 b_idx에 넣어주세요
+
+b_idx를 commlist에 써야하는 데 그냥 지정안하고 쓰면 null나온다
+commlist에서 이미 사용했다. 고로 bbsvo의 b_idx에 값이 안들어간다. 그래서 지정해서 넣어줘야한다
+다음 곳으로 값을 넘겨주려면 result나 id tag로 넣어줘야한다. 
+
+commlist를 부를 때 b_idx로 값을 넘겨줘야하는 데 그러면 값이 안넘어간다. bbsvo를 이미 줘버렸으니까
+
+list의 map1을 보자마자 위의 resultmap map1으로 온다 그래서 bbsVO 생성 property가 멤버변수 b_idx
+잘려온 레모드의 b_idx가 있다 이를 생성한 bbsVO에 같은 이름으로 넣는다
+이제 commlist를 부른다. 이때 호출할 때 남기기 위해서 bbsVO 에 속성값을 result, id 로 안넣어주면 이미 b_idx 쓰고 
+있기 때문에 그 전하려던 값은 사라진다.
+
+1:다 는 콜렉션 1:1 어소시에이션 태그 2개만 구분
+
+-->
+
+	<id column="b_idx" property = "b_idx"/> <!-- id는 기본키를 의미 -->
+	<collection property="c_list" select = "commList" column = "b_idx"  ofType="mybatis.vo.CommVO">
+	<!-- 내가 넘겨줘야하는 값은 레코드에서 넣어줄게, collection이니 여러개 리스트를 받는 구나를 안다 -->
+	<!-- 리스트 안에 문자열을 여러개 , 정수, 객체를 여러개 주는 지 모른다. 지정해줘야한다 oftype -->
+	<!-- b_idx를 주고 셀렉 부르고 그결과를 받아와서 c_list에 넣는데 이게 list이다 -->
+	
+	</collection> <!-- select:선택할거야 commlist -->
+	
+
+</resultMap>
+
+<!-- 특정 원글의 기본키를 조건으로 하여,(파라미터 하나뿐) 받아서 해당 댓글들을 조회하는 기능 -->
+
+<select id = "commList" parameterType = "String" resultType = "mybatis.vo.CommVO">
+	select * from comment_t where b_idx = #{b_idx}
+</select>
+<!-- 한개일수도 여러개일수도 있고 없을 수도 있다 -->
+<!-- 위에서 만들어지는 게 댓글 아래에서 만들어 지는 게 원글 이를 합치기 위해 resultmap
+	처리는 commlist 부르는 건 list 먼저 해야 원글에서 댓글을 뽑아올 수 있다.
+	resultmap을 하고 map1 별칭을 지어준다. 2-3개가 결합됐다고 보면된다.
+	b_idx : 댓글을 참조해서 매칭 시켜야하니까 원글의 고유번호가 필요
+ -->
+
+<!-- 게시판 목록 화면을 나오게 하는 select -->
+	<select id = "list" parameterType = "java.util.Map" resultMap = "map1"><!-- 보자마자 resultmap태그로 -->
+	select * from (
+		select rownum r_num, a.* from (
+			select * from bbs where status = 0 and bname = #{bname} order by b_idx desc
+		) a
+	) where r_num between #{begin} and #{end}
+	</select>
+
+<!-- 페이징 기법을 줄것이다. begin과 end값으로 구분하기로 했다 인자가 2개 올것이다. 고로 map -->
+<!-- result Type이 아닌 resultMap을 쓸 것이다. 매우 중요한 부분 -->
+ <!-- 최근글이 높으니까 맨위에 나와야한다. 고로 desc 
+ 반드시 list라는 mapper 호출하려면 begin과 end를 같이 넣어줘야한다.
+
+	몇번글부터 몇번글까지?가 rownum
+	목록에서 1번을 빼서 b_idx가 1번일 경우만 나오세요 그런데 여러개일 수있다 
+	여러개일 가능성있으면 List를 준다 
+	commvo를 담아서 준다
+	그래서 VO를 만들때 c_list를 만든 것 -> 받자마자 바로 넣기 위해서
+	이를 mybatis가 하게할것이다 bbsvo안에 comvo가 여러가 들어와야한다
+	이를 복잡적인 결과의 집합 -> 이를 만들고 싶을 때 resultMap으로 지정
+	보통은 resultmap을 변수와 컬럼명이 다를 때 쓴다고 생각하는데 복잡적인 결과를 만들 때 쓰는 것
+	서브 쿼리를 대신해서 쓸 수 있는 구조가 resultmap
+ 
+ bname도 같이 있어야한다.
+ -->
+ 
+ <!-- 페이징 기법에 사용될 전체 페이지수 구하기 - 전체 게시물 수 반환 -->
+ <select id="totalCount" resultType="int" parameterType="String">
+  	select count(*) from bbs 
+ 	where status = 0 and bname = #{bname}  
+ </select>
+ 
+ 
+ <insert id = "add" parameterType="java.util.Map">
+ insert into bbs(b_idx,subject,writer,content,file_name,write_date,ip,hit,status,bname)
+ values(bbs_seq.NEXTVAL,#{subject},#{writer},
+ #{content},#{file_name},sysdate,#{ip},0,0,#{bname})
+ </insert>
+ 
+ <!-- 보기기능 -->
+ <select id="getBbs" resultMap="map1" parameterType="String"> 
+ <!-- resultmap을 하지 않으면 원글은 받아오지만 댓글은 보지못한다. -->
+ 	select * from bbs where b_idx=#{idx}
+ </select>
+ 
+ 	<update id = "edit" parameterType="java.util.Map">
+ 	update bbs
+ 	set
+ 		subject = #{subject},
+ 		content = #{content}
+ 		<if test = "fname != null">
+ 			,file_name = #{fname}
+ 		</if>
+ 	where b_idx = #{b_idx}
+ 	</update>
+ 	
+ 	
+ 	<!-- 원글 삭제 -->
+ 	<update id = "del" parameterType="String">
+ 	update bbs
+ 	set status = 1
+ 	where b_idx = #{b_idx}
+ 	
+ 	</update>
+ 
+</mapper>
