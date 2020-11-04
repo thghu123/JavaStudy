@@ -20,12 +20,14 @@
 	    padding:4px 10px;
 	}
 	
-	.no {width:15%}
+	.image{width:20%}
+	.no {width:5%}
 	.subject {width:30%}
-	.writer {width:20%}
+	.writer {width:15%}
 	.reg {width:20%}
-	.hit {width:15%}
+	.hit {width:10%}
 	.title{background:lightsteelblue}
+	
 	
 	.odd {background:silver}
 	
