@@ -1,6 +1,6 @@
 @charset "UTF-8";
 #bbs table {
-	    width:580px;
+	    width:780px;
 	    margin-left:10px;
 	    border:1px solid black;
 	    border-collapse:collapse;
@@ -20,12 +20,15 @@
 	    padding:4px 10px;
 	}
 	
-	.image{width:20%}
+	
+	
+	
+	.image{width:30%}
 	.no {width:5%}
 	.subject {width:30%}
 	.writer {width:15%}
 	.reg {width:20%}
-	.hit {width:10%}
+	.hit {width:5%}
 	.title{background:lightsteelblue}
 	
 	

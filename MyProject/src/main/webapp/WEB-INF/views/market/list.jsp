@@ -71,8 +71,9 @@ href="css/bbs.css"/>
 					    <c:set var = "file_ext" value = "${fn:substring(vo.file_name, length -3, length)}" />
 						
 						<c:if test="${fn:substring(vo.file_name, length -3, length) eq 'png'}">
+	<!-- 이미지 크기 조정 -->
 						<<td>  
-							<img src = "upload/${vo.file_name}"/>
+							<img style="width:70px" src = "upload/${vo.file_name}"/>
 						</td> 
 						</c:if>
 						
