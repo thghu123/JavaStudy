@@ -15,7 +15,6 @@ href="css/login.css"/>
 <link type="text/css" rel="stylesheet" 
 href="css/bbs.css"/>
 
-
 </head>
 <body>
 <div id="wrap">
