@@ -10,6 +10,10 @@ public class IndexController {
 	public String first() {
 		return "index";
 	}
+	@RequestMapping("/chart")
+	public String chart() {
+		return "chart";
+	}
 	
 	
 }
