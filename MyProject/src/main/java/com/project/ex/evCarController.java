@@ -1,22 +1,19 @@
-package com.test.flask;
+package com.project.ex;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class IndexController {
+public class evCarController {
 
-	@RequestMapping("/")
-	public String first() {
-		return "index";
-	}
+
 	@RequestMapping("/chart")
 	public String chart() {
 		return "chart";
 	}
 	
-	@RequestMapping("/evCar")
+	@RequestMapping("/evCar_call")
 	public String evCar() {
-		return "evCar";
+		return "evCar/evCar";
 	}
 }
